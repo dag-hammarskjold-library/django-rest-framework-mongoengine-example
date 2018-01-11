@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'rest_framework_mongoengine',
     'mongoengine.django.mongo_auth',
     'app',
-    'users'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -165,7 +164,7 @@ MONGOENGINE_USER_DOCUMENT = 'users.models.User'
 # Don't confuse Django's AUTHENTICATION_BACKENDS with DRF's AUTHENTICATION_CLASSES!
 AUTHENTICATION_BACKENDS = (
     'mongoengine.django.auth.MongoEngineBackend',
-    #'django.contrib.auth.backends.ModelBackend'
+    # 'django.contrib.auth.backends.ModelBackend'
 )
 
 DEFAULT_AUTHENTICATION_CLASSES = (

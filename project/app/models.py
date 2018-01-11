@@ -1,53 +1,22 @@
-from mongoengine import Document, EmbeddedDocument, fields
+from mongoengine import Document, fields
+import datetime
 
 
-class Author(Document):
-    name = fields.StringField()
-
-
-class Book(Document):
-    name = fields.StringField()
-    author = fields.ReferenceField(Author, dbref=True)
-
-
-class ToolInput(EmbeddedDocument):
-    id = fields.StringField(required=True)
-    type = fields.ListField(fields.DynamicField(null=True))
-    label = fields.StringField(required=True, null=True)
-    description = fields.StringField(required=False, null=True)
-    default = fields.DynamicField(required=False)
-    inputBinding = fields.DynamicField(required=True)
-    required = fields.BooleanField(required=False, default=True)
-
-
-class ToolOutput(EmbeddedDocument):
-    id = fields.StringField(required=True)
-    type = fields.ListField(fields.DynamicField(null=True))
-    label = fields.StringField(required=False)
-    default = fields.DynamicField(required=False, null=True)
-    description = fields.StringField(required=False)
-    outputBinding = fields.DynamicField(required=False)
-    required = fields.BooleanField(required=False, default=True)
-
-
-class Tool(Document):
+class UNDocument(Document):
     id = fields.StringField(required=True, primary_key=True)
-    # 'class' is a reserved word in python, so to get a field called "class", we use the following trick with vars():
-    vars()['class'] = fields.StringField(verbose_name="class", required=True)
-    label = fields.StringField(required=True)
-    description = fields.StringField(required=True, null=True)
-    owner = fields.ListField(fields.StringField())
-    contributor = fields.ListField(fields.StringField())
-    inputs = fields.EmbeddedDocumentListField(ToolInput)
-    outputs = fields.EmbeddedDocumentListField(ToolOutput)
-    baseCommand = fields.DynamicField(required=True)
-    arguments = fields.DynamicField(required=True)
-    requirements = fields.DynamicField(required=True, null=True)
-    hints = fields.DynamicField(required=False, null=True)
-    cwlVersion = fields.StringField(required=False, null=True, choices=['cwl:draft-2'])
-    stdin = fields.StringField(required=False, null=True)
-    stdout = fields.StringField(required=False, null=True)
-    successCodes = fields.ListField(fields.IntField(), required=False)
-    temporaryFailCodes = fields.ListField(fields.IntField(), required=False)
-    permanentFailCodes = fields.ListField(fields.IntField(), required=False)
-
+    title = fields.StringField(required=True)
+    document_symbol = fields.StringField(required=True)
+    agenda = fields.StringField(required=False, null=True)
+    author = fields.StringField(required=False, null=True)
+    authority_authors = fields.ListField(required=False, null=True)
+    imprint = fields.StringField(required=False, null=True)
+    notes = fields.ListField(required=False, null=True)
+    publisher = fields.StringField(required=False, null=True)
+    pubyear = fields.StringField(required=False, null=True)
+    pubdate = fields.StringField(required=False, null=True)
+    related_documents = fields.ListField(required=False, null=True)
+    subjects = fields.ListField(required=False, null=True)
+    summary = fields.StringField(required=False, null=True)
+    title_statement = fields.StringField(required=False, null=True)
+    links_to_pdf = fields.ListField(required=False, null=True)
+    date_modified = fields.DateTimeField(default=datetime.datetime.now)
