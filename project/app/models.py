@@ -20,3 +20,20 @@ class UNDocument(Document):
     title_statement = fields.StringField(required=False, null=True)
     links_to_pdf = fields.ListField(required=False, null=True)
     date_modified = fields.DateTimeField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return "<UNDocument: document_symbol: {} title: {}".format(
+            self.document_symbol.
+            self.title
+        )
+
+
+class Blog(Document):
+    title = fields.StringField(required=True)
+    created_at = fields.DateTimeField(default=datetime.datetime.now)
+    body = fields.StringField(required=False, null=True)
+    tags = fields.ListField(required=False, null=True)
+    is_published = fields.BooleanField(required=False, null=True)
+
+    def __str__(self):
+        return self.title

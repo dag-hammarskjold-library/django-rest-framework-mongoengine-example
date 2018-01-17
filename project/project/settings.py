@@ -33,6 +33,15 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +52,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_mongoengine',
     'mongoengine.django.mongo_auth',
+    'django_extensions',
+    'rest_framework_elasticsearch',
+    'elasticsearch_dsl',
     'app',
 ]
 

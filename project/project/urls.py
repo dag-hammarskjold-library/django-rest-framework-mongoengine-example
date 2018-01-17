@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
-from app.views import UNDocumentViewSet, index_view
+from app.views import UNDocumentViewSet, index_view, BlogViewSet
 from project.routers import HybridRouter
 
 
@@ -11,6 +11,7 @@ router = HybridRouter()
 
 # app views and viewsets
 router.register(r'document', UNDocumentViewSet, r"document")
+router.register(r'blog', BlogViewSet, r"blog")
 
 
 urlpatterns = [
